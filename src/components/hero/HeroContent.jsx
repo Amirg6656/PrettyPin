@@ -1,0 +1,37 @@
+import { Gift } from "lucide-react";
+import HeroBadge from "./HeroBadge";
+import HeroButton from "./HeroButton";
+
+const HeroContent = ({ slide }) => {
+  return (
+    <div
+      className="
+        absolute inset-0 flex flex-col justify-end px-4 pb-6 text-right text-white
+        sm:inset-y-0 sm:left-auto sm:right-0 sm:w-full sm:max-w-[420px]
+        sm:justify-center sm:px-8 sm:pb-0
+        md:max-w-[560px] md:px-10
+      "
+    >
+      <h1 className="text-2xl font-bold leading-[1.3] sm:text-4xl md:text-5xl">
+        {slide.title[0]}
+        <br />
+        {slide.title[1]}
+      </h1>
+
+      <p className="mt-3 hidden max-w-[420px] text-base leading-8 text-white/90 sm:mt-4 sm:block">
+        {slide.description}
+      </p>
+
+      <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-8 sm:gap-4">
+        <HeroBadge icon={<Gift size={18} />} text={slide.discountText} variant="solid" />
+        <HeroBadge text={slide.shippingText} />
+      </div>
+
+      <div className="mt-3 sm:mt-8">
+        <HeroButton />
+      </div>
+    </div>
+  );
+};
+
+export default HeroContent;
