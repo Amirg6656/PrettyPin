@@ -1,13 +1,8 @@
-import Header from "./components/layout/Header";
-import Hero from "./components/hero/Hero";
-import CategoryList from "./components/category/CategoryList";
-
+import Home from "./pages/Home.jsx";
 function App() {
   return (
     <>
-      <Header />
-      <Hero />
-      <CategoryList />
+      <Home/>
     </>
   );
 }

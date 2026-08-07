@@ -5,24 +5,24 @@ import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <header className="border-b border-gray-200">
-      <TopBar />
+    return (
+        <>
+            <TopBar />
 
-      <MainHeader
-        isMenuOpen={isMenuOpen}
-        onMenuToggle={() => setIsMenuOpen((prev) => !prev)}
-      />
+            <MainHeader
+                isMenuOpen={isMenuOpen}
+                onMenuToggle={() => setIsMenuOpen((prev) => !prev)}
+            />
 
-      <div className="hidden md:block">
-        <Navbar />
-      </div>
+            <div className="hidden md:block">
+                <Navbar />
+            </div>
 
-      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-    </header>
-  );
+            <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+        </>
+    );
 };
 
 export default Header;

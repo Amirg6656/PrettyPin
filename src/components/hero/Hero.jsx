@@ -45,9 +45,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="px-4 py-4 sm:px-6 sm:py-6 md:px-8">
+    <section className="px-4 py-4 sm:px-6 sm:py-6 sm:mx-8 md:px-8 md:mx-8">
       <div
-        className="group relative overflow-hidden rounded-2xl sm:rounded-[32px]"
+        className="group relative overflow-hidden rounded-2xl sm:rounded-4xl"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
