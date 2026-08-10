@@ -1,0 +1,20 @@
+from rest_framework import serializers
+from core.validators import validate_iran_phone
+
+
+class SendOTPSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=15, validators=[validate_iran_phone])
+    
+
+class ResendOTPSerializer(serializers.Serializer):
+    otp_uuid = serializers.UUIDField()
+
+class OTPMaskedPhoneResponseSerializer(serializers.Serializer):
+    otp_uuid = serializers.UUIDField()
+    otp_expire_at = serializers.DateTimeField()
+    masked_phone = serializers.CharField(max_length=12)
+
+class VerifyOTPSerializer(serializers.Serializer):
+    otp_uuid = serializers.UUIDField()
+    code = serializers.CharField(max_length=6)
+

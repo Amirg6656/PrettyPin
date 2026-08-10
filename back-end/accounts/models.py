@@ -4,12 +4,88 @@ from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser
-from .validators import validate_iran_phone, normalize_iran_phone
+from django.contrib.auth.validators import UnicodeUsernameValidator
+from core.validators import validate_iran_phone, normalize_iran_phone
+from core.models import TimeStampModel
+from .managers import CustomUserManager
+# from iranian_cities import CityField(), ProvinceField()
 
+class CustomUser(AbstractUser, TimeStampModel):
+    date_joined = None
 
-class CustomUser(AbstractUser):
+    username_validator = UnicodeUsernameValidator()
+    username = models.CharField(
+        ('username'),
+        max_length=100,
+        unique=True,
+        help_text=(
+            "Letters, digits and @/./+/-/_ only."
+        ),
+        validators=[username_validator],
+        error_messages={
+            'unique': ('This username is not Available'),
+        },
+        blank=True,
+        null=True,
+    )
+
+    public_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, db_index=True)
     phone_number = models.CharField(max_length=15, unique=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile pictures/', blank=True, default='profile pictures/default.jpg')
+
+    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
+    def __str__(self):
+        return f'{self.phone_number}'
+    
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+        unique_together = ('phone_number', )
+
+    def clean(self):
+        if self.phone_number:
+            normalized_phone = normalize_iran_phone(self.phone_number)
+            if normalized_phone is None:
+                raise ValidationError({'phone_number': 'Enter a Valid Iranian Phone Number'})
+            self.phone_number = normalized_phone
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+
+        if not self.username or self.username=='':
+            self.username = normalize_iran_phone(self.phone_number)
+
+        super().save(*args, **kwargs)
+
+class Address(models.Model):
+
+    public_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, db_index=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='addresses')
+
+    formatted_address = models.CharField(max_length=255, null=True, blank=True)
+    # province = ProvinceField(null=True, blank=True)
+    # city = CityField(null=True, blank=True)
+    latitude = models.DecimalField(max_digits=10, decimal_places=7)
+    longitude = models.DecimalField(max_digits=10, decimal_places=7)
+
+    plaque = models.DecimalField(max_digits=6, decimal_places=0, null=True, blank=True)
+    unit = models.PositiveIntegerField(null=True, blank=True)
+    postal_code = models.DecimalField(max_digits=12, decimal_places=0, null=True, blank=True)
+
+    is_default = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Addresses'
+
+    def __str__(self):
+        return f'{self.formatted_address}'
 
 
 class OTP(models.Model):
