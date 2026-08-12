@@ -18,3 +18,7 @@ class VerifyOTPSerializer(serializers.Serializer):
     otp_uuid = serializers.UUIDField()
     code = serializers.CharField(max_length=6)
 
+
+class LoginSerializer(serializers.Serializer):
+        phone_number = serializers.CharField(max_length=15, validators=[validate_iran_phone])
+        password = serializers.CharField(max_length=128, write_only=True)

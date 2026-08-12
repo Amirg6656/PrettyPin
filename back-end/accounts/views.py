@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
+from .serializers import LoginSerializer
+from django.contrib.auth import authenticate
 
 from core.validators import normalize_iran_phone
 from .models import CustomUser, OTP
@@ -202,3 +204,47 @@ class access_token_refresh(APIView):
         
         set_token_cookies(response=response, refresh_token=refresh)
         return response
+
+
+class login_view(APIView):
+        permission_classes = [AllowAny]
+
+        def post(self, request):
+            serializer = LoginSerializer(data=request.data)
+            if serializer.is_valid():
+                phone_number = normalize_iran_phone(serializer.validated_data['phone_number'])
+                password = serializer.validated_data['password']
+
+                try:
+                    user = CustomUser.objects.get(phone_number=phone_number)
+                except CustomUser.DoesNotExist:
+                    return Response(
+                        {'message': 'شماره موبایل یا رمز عبور اشتباه است'},
+                        status=status.HTTP_401_UNAUTHORIZED
+                    )
+
+                if not user.check_password(password):
+                    return Response(
+                        {'message': 'شماره موبایل یا رمز عبور اشتباه است'},
+                        status=status.HTTP_401_UNAUTHORIZED
+                    )
+
+                if not user.is_active:
+                    return Response(
+                        {'message': 'حساب کاربری غیرفعال است'},
+                        status=status.HTTP_403_FORBIDDEN
+                    )
+
+                refresh_token = RefreshToken.for_user(user=user)
+                response = Response(
+                    {
+                        'message': 'ورود با موفقیت انجام شد',
+                        'access_token': str(refresh_token.access_token),
+                        'user_uuid': user.public_id,
+                    },
+                    status=status.HTTP_200_OK
+                )
+                set_token_cookies(response=response, refresh_token=refresh_token)
+                return response
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
