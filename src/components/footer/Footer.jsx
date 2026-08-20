@@ -7,43 +7,48 @@ import FooterBottom from "./FooterBottom";
 import footerLinks from "../../data/footerLinks";
 
 const Footer = () => {
-    return (
-        <footer className="bg-gray-900 pt-10 sm:pt-14">
-            <Container>
+  return (
+    <footer dir="rtl" className="bg-gray-900 pt-10 sm:pt-14">
+      <Container>
 
-                {/* خبرنامه: کمی از بدنه‌ی تیره‌ی فوتر جدا و برجسته‌ست */}
-                <FooterNewsletter />
+        <FooterNewsletter />
 
-                {/* ستون‌های اطلاعات */}
-                <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-                    <div>
-                        <span className="text-xl font-bold text-white sm:text-2xl">زیبانو</span>
-                        <p className="mt-3 max-w-xs text-sm text-gray-400">
-                            زیبایی در جزئیات توست. جدیدترین اکسسوری‌های مو و زیورآلات برای هر سلیقه.
-                        </p>
-                    </div>
+        {/* معرفی برند: همیشه تمام‌عرض، جدا از گرید ستون‌ها */}
+        <div className="mt-10 text-right">
+          <span className="text-xl font-bold text-white sm:text-2xl">زیبانو</span>
+          <p className="mt-3 max-w-sm text-sm text-gray-400">
+            زیبایی در جزئیات توست. جدیدترین اکسسوری‌های مو و زیورآلات برای هر سلیقه.
+          </p>
+        </div>
 
-                    {footerLinks.map((column) => (
-                        <FooterLinkColumn key={column.id} title={column.title} links={column.links} />
-                    ))}
+        {/* گرید ستون‌ها: موبایل/تبلت ۲×۲ با خط جداکننده، دسکتاپ یک ردیف ۴تایی بدون خط */}
+        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4 lg:gap-x-10 lg:gap-y-0">
+          {footerLinks.map((column) => (
+            <div
+              key={column.id}
+              className="[&:nth-child(-n+2)]:border-b [&:nth-child(-n+2)]:border-gray-800 [&:nth-child(-n+2)]:pb-8 [&:nth-child(odd)]:border-e [&:nth-child(odd)]:border-gray-800 [&:nth-child(odd)]:pe-6 lg:border-0 lg:!p-0"
+            >
+              <FooterLinkColumn title={column.title} links={column.links} />
+            </div>
+          ))}
 
-                    <FooterAddress />
-                </div>
+          <div className="[&:nth-child(odd)]:border-e [&:nth-child(odd)]:border-gray-800 [&:nth-child(odd)]:pe-6 lg:border-0 lg:!p-0">
+            <FooterAddress />
+          </div>
+        </div>
 
-                {/* نمادهای اعتماد */}
-                <div className="mt-12 border-t border-gray-800 pt-8">
-                    <h4 className="mb-4 text-sm font-bold text-white">نمادهای اعتماد</h4>
-                    <FooterTrustBadges />
-                </div>
+        <div className="mt-12 border-t border-gray-800 pt-8">
+          <h4 className="mb-4 text-right text-sm font-bold text-white">نمادهای اعتماد</h4>
+          <FooterTrustBadges />
+        </div>
 
-                {/* کپی‌رایت و شبکه‌های اجتماعی */}
-                <div className="mt-8 pb-8">
-                    <FooterBottom />
-                </div>
+        <div className="mt-8 pb-8">
+          <FooterBottom />
+        </div>
 
-            </Container>
-        </footer>
-    );
+      </Container>
+    </footer>
+  );
 };
 
 export default Footer;

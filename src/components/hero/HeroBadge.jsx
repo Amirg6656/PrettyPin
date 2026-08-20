@@ -3,10 +3,10 @@ const HeroBadge = ({ icon, text, variant = "light" }) => {
 
   return (
     <div
-      className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold shadow-md sm:gap-2 sm:px-4 sm:py-2 sm:text-sm ${styles}`}
+      className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold shadow-md sm:gap-2 sm:px-4 sm:py-2 sm:text-sm ${styles}`}
     >
       {icon}
-      <span className="max-w-[150px] truncate sm:max-w-none sm:truncate-none">{text}</span>
+      <span className="max-w-[140px] truncate sm:max-w-none">{text}</span>
     </div>
   );
 };

@@ -60,7 +60,7 @@ const FilterPanel = () => {
             {/* نسخه دسکتاپ: Dropdown */}
             <div
                 className={`
-          absolute left-0 top-full z-30 mt-3 hidden w-80 rounded-2xl border border-gray-200
+          absolute right-0 top-full z-30 mt-3 hidden w-80 rounded-2xl border border-gray-200
           bg-white p-5 shadow-xl transition-all duration-200 sm:block
           ${isOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}
         `}

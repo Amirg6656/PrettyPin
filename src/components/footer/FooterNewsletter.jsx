@@ -30,7 +30,7 @@ const FooterNewsletter = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="ایمیل خود را وارد کن"
-                        className="h-14 font-bold w-full rounded-full border-none pl-4 pr-11 text-right text-sm text-black outline-none"
+                        className="h-14 font-bold w-full rounded-full border-none pl-4 pr-11 text-right text-sm text-black bg-white outline-none"
                     />
                 </div>
 
