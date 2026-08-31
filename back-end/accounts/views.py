@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
+from .serializers import RegisterSerializer
 from django.contrib.auth import authenticate
 
 from core.validators import normalize_iran_phone
@@ -123,7 +124,7 @@ class otp_status_view(APIView):
 class verify_otp_view(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request):
+    def post(self, request, status=None):
         serializer = VerifyOTPSerializer(data=request.data)
         if serializer.is_valid():
             otp_id = serializer.validated_data['otp_id']
@@ -256,3 +257,39 @@ class login_view(APIView):
                 return response
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class register_view(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            full_name = serializer.validated_data['full_name'].strip()
+            phone_number = normalize_iran_phone(serializer.validated_data['phone_number'])
+            password = serializer.validated_data['password']
+
+            name_parts = full_name.split(' ', 1)
+            first_name = name_parts[0]
+            last_name = name_parts[1] if len(name_parts) > 1 else ''
+
+            user = CustomUser.objects.create_user(
+                phone_number=phone_number,
+                password=password,
+                first_name=first_name,
+                last_name=last_name,
+            )
+
+            refresh_token = RefreshToken.for_user(user=user)
+            response = Response(
+                {
+                    'message': 'ثبت‌نام با موفقیت انجام شد',
+                    'access_token': str(refresh_token.access_token),
+                    'user_uuid': user.public_id,
+                },
+                status=status.HTTP_201_CREATED
+            )
+            set_token_cookies(response=response, refresh_token=refresh_token)
+            return response
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

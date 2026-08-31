@@ -4,7 +4,7 @@ from .views import (
     otp_status_view,
     verify_otp_view,
     access_token_refresh,
-    login_view,
+    login_view, register_view,
 )
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('verify-otp/', verify_otp_view.as_view(), name='verify-otp'),
     path('token/refresh/', access_token_refresh.as_view(), name='token-refresh'),
     path('login/', login_view.as_view(), name='login'),
+    path('register/', register_view.as_view(), name='register'),
 ]
