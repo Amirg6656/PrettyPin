@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Heart, User, ChevronDown } from "lucide-react";
-import SearchToggle from "./SearchToggle";
-import accountLinks from "../../data/accountLinks";
+import SearchToggle from "./SearchToggle.jsx";
+import accountLinks from "../../data/accountLinks.js";
 
 const navLinks = [
   "جدیدترین‌ها",

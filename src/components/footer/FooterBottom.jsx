@@ -1,5 +1,5 @@
 import { Send, MessageCircle } from "lucide-react";
-import InstagramIcon from "../common/InstagramIcon";
+import InstagramIcon from "../common/InstagramIcon.jsx";
 
 const socials = [
     { id: "instagram", icon: InstagramIcon, href: "#" },

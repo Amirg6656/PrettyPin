@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #2C3454;       /* سرمه‌ای اصلی - دکمه‌ها و Header */
+  --color-primary-dark: #1E2440;  /* حالت Hover دکمه سرمه‌ای */
+  --color-accent: #EC7FA9;        /* صورتی برند - لینک‌ها و تاکیدها */
+  --color-accent-light: #FCE7EF;  /* صورتی روشن - پس‌زمینه‌های ملایم */
+  --color-cream: #FAF3EA;         /* کرم - پس‌زمینه کلی صفحه Auth */
+}

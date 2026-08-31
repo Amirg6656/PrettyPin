@@ -1,10 +1,10 @@
-import { useState } from "react";
-import Container from "../common/Container";
+import Container from "../common/Container.jsx";
 import { Truck, User } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const TopBar = () => {
-    // موقتی: بعداً از Context جایگزین میشه
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoggedIn } = useAuth();
 
     return (
         <div className="border-b border-gray-200">
@@ -16,14 +16,13 @@ const TopBar = () => {
                     </div>
 
                     {!isLoggedIn && (
-                        <a
-                            onClick={() => setIsLoggedIn(true)}
-                            href="#"
+                        <Link
+                            to="/login"
                             className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-pink-500 transition hover:text-pink-600 sm:text-sm"
                         >
-                            <User size={14} className="sm:hidden" />
+                            <User size={18} />
                             ورود / ثبت‌نام
-                        </a>
+                        </Link>
                     )}
                 </div>
             </Container>

@@ -1,4 +1,4 @@
-import Container from "../common/Container";
+import Container from "../common/Container.jsx";
 
 const links = [
   "اکسسوری مو", "زیورآلات", "آرایشی",

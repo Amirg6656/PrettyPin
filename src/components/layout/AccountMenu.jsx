@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { User } from "lucide-react";
-import useClickOutside from "../../hooks/useClickOutside";
-import accountLinks from "../../data/accountLinks";
+import useClickOutside from "../../hooks/useClickOutside.js";
+import accountLinks from "../../data/accountLinks.js";
 
 const AccountMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ const AccountMenu = () => {
 
             <div
                 className={`
-          absolute right-0 top-full z-30 mt-3 w-64 rounded-2xl border border-gray-200
+          absolute left-0 top-full z-30 mt-3 w-64 rounded-2xl border border-gray-200
           bg-white p-2 shadow-xl transition-all duration-200
           ${isOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}
         `}

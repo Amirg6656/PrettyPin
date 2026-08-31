@@ -11,7 +11,7 @@ const FooterNewsletter = () => {
     };
 
     return (
-        <div className="rounded-3xl bg-gradient-to-l from-pink-600 to-pink-500 px-6 py-10 text-center text-white sm:px-10">
+        <div className="rounded-3xl bg-linear-to-l from-pink-600 to-pink-500 px-6 py-10 text-center text-white sm:px-10">
             <h3 className="text-xl font-bold sm:text-2xl">در خبرنامه زیبانو عضو شو</h3>
             <p className="mt-2 text-sm text-white/80 sm:text-base">
                 از جدیدترین محصولات و تخفیف‌های ویژه باخبر شو

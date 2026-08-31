@@ -40,7 +40,7 @@ const SearchToggle = () => {
                 className={`
           absolute top-0 flex h-11 items-center overflow-hidden rounded-full
           border bg-white shadow-sm transition-all duration-300 ease-in-out
-          ${isExpanded ? "left-0 w-72 border-pink-500" : "left-0 w-11 border-gray-500"}
+          ${isExpanded ? "right-0 w-72 border-pink-500" : "right-0 w-11 border-gray-500"}
         `}
             >
                 <button

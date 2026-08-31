@@ -14,7 +14,6 @@ const SearchBar = () => {
         className="
           h-12 w-full rounded-xl border border-gray-500
           pl-4 pr-2 text-right outline-none transition
-          focus:border-pink-500
           sm:h-12
         "
       />

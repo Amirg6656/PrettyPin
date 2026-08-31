@@ -1,4 +1,4 @@
-import trustBadges from "../../data/trustBadges";
+import trustBadges from "../../data/trustBadges.js";
 
 const FooterTrustBadges = () => {
     return (

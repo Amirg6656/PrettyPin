@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import Container from "../common/Container";
-import Logo from "./Logo";
-import SearchToggle from "./SearchToggle";
-import HeaderActions from "./HeaderActions";
+import Container from "../common/Container.jsx";
+import Logo from "./Logo.jsx";
+import SearchToggle from "./SearchToggle.jsx";
+import HeaderActions from "./HeaderActions.jsx";
 
 const MainHeader = ({ isMenuOpen, onMenuToggle }) => {
   const [isScrolled, setIsScrolled] = useState(false);

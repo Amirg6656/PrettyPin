@@ -1,8 +1,8 @@
 import { useState } from "react";
-import TopBar from "./TopBar";
-import MainHeader from "./MainHeader";
-import Navbar from "./Navbar";
-import MobileMenu from "./MobileMenu";
+import TopBar from "./TopBar.jsx";
+import MainHeader from "./MainHeader.jsx";
+import Navbar from "./Navbar.jsx";
+import MobileMenu from "./MobileMenu.jsx";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

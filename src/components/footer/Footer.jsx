@@ -1,10 +1,10 @@
-import Container from "../common/Container";
-import FooterNewsletter from "./FooterNewsletter";
-import FooterLinkColumn from "./FooterLinkColumn";
-import FooterAddress from "./FooterAddress";
-import FooterTrustBadges from "./FooterTrustBadges";
-import FooterBottom from "./FooterBottom";
-import footerLinks from "../../data/footerLinks";
+import Container from "../common/Container.jsx";
+import FooterNewsletter from "./FooterNewsletter.jsx";
+import FooterLinkColumn from "./FooterLinkColumn.jsx";
+import FooterAddress from "./FooterAddress.jsx";
+import FooterTrustBadges from "./FooterTrustBadges.jsx";
+import FooterBottom from "./FooterBottom.jsx";
+import footerLinks from "../../data/footerLinks.js";
 
 const Footer = () => {
   return (
