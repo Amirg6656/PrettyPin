@@ -9,10 +9,6 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-<<<<<<< HEAD
-
-from pathlib import Path
-=======
 import os
 from pathlib import Path
 from datetime import timedelta
@@ -20,7 +16,6 @@ from dotenv import load_dotenv
 from django.core.exceptions import ImproperlyConfigured
 
 load_dotenv()
->>>>>>> back-dev
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,14 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-<<<<<<< HEAD
-SECRET_KEY = 'django-insecure-d)1(r(ghtykgh3)bp@n)(5r@yduhtikrs_ih@x%d^-xt87#fr('
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-=======
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 if not SECRET_KEY:
@@ -63,7 +50,6 @@ if DEBUG:
     ]
 else:
     ALLOWED_HOSTS = ['*']
->>>>>>> back-dev
 
 
 # Application definition
@@ -75,10 +61,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    'accounts',
-    'products',
-=======
     # plugins
     'corsheaders',
     'rest_framework',
@@ -86,7 +68,6 @@ INSTALLED_APPS = [
     # used apps
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
->>>>>>> back-dev
 ]
 
 MIDDLEWARE = [
@@ -124,17 +105,12 @@ WSGI_APPLICATION = 'prettyPin.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-=======
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME', 'prettypin_db'),
         'USER': os.getenv('DB_USER', 'prettypin_user'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'tQ0HR1uMC1cGWrgqs4AGmnxdZsozuO4g5'),
         'HOST': os.getenv('DB_HOST', '127.0.0.1'),
         'PORT': os.getenv('DB_PORT', '5432'),
->>>>>>> back-dev
     }
 }
 
@@ -163,11 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-<<<<<<< HEAD
-TIME_ZONE = 'UTC'
-=======
 TIME_ZONE = 'Asia/Tehran'
->>>>>>> back-dev
 
 USE_I18N = True
 
@@ -180,10 +152,6 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-<<<<<<< HEAD
-
-STATIC_URL = 'static/'
-=======
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
@@ -205,8 +173,8 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True, 
-    'ALGORITHM': 'HS256', 
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
     'UPDATE_LAST_LOGIN': True,
@@ -227,4 +195,3 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://192.168.1.5:5173',
 ]
->>>>>>> back-dev
